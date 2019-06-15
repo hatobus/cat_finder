@@ -9,4 +9,5 @@ load_dotenv(dotenv_path)
 
 STREETVIEWAPIKEY = os.environ.get("STREETVIEWAPIKEY")
 COMPUTERVISIONKEY = os.environ.get("COMPUTERVISIONKEY")
+COMPUTERVISIONURL = os.environ.get("COMPUTERVISIONURL")
 REQUESTURL = os.environ.get("REQUESTURL")

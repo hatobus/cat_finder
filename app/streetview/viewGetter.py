@@ -16,11 +16,11 @@ class viewGetter():
 
     def getRandomPicture(self):
         # 20回ランダムに座標を取得して、画像が返ってくるかで見る
-        for n in range(1):
+        for n in range(20):
             # 経度
-            longtitude = str(random.uniform(127, 145))
+            longtitude = str(round(random.uniform(127, 145), 6))
             # 緯度
-            latitude = str(random.uniform(26, 45))
+            latitude = str(round(random.uniform(26, 45), 6))
 
             size = "640x640"
 
@@ -36,12 +36,17 @@ class viewGetter():
 
             if isdiff == True:
                 now = int(time.time())
-                jpgfile = "Cat" + now + ".jpeg"
-                with open(".pic/catimg/"+jpgfile, "wb") as rp:
+                jpgfile = ".pic/catimg/" + "Cat" + now + ".jpeg"
+                with open(jpgfile, "wb") as rp:
                     rp.write(rawpic)
+                return jpgfile
+
+        return ""
 
 
     def picComp(self, rawimg):
+        # 指定した場所にストリートビューの画像がない場合
+        # 帰ってくる画像が同じになるのでそれを比較する。
         fname = "./pic/notfound/streetviewnotfound.jpeg"
         with open(fname, 'rb') as img:
             notfoundimg = img.read()

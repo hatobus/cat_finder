@@ -1,4 +1,4 @@
-import urllib
+import requests
 import json
 
 
@@ -13,21 +13,19 @@ class ComputerVision():
 
         print(self.CPVISIONURL)
 
-        req = urllib.request.Request(self.CPVISIONURL)
-        req.add_header("Content-Type", "application/octet-stream")
-        req.add_header("Ocp-Apim-Subscription-Key", self.CPVISIONKEY)
+        headers = {
+            "Content-Type" : "application/octet-stream",
+            "Ocp-Apim-Subscription-Key": self.CPVISIONKEY
+        }
 
-        with urllib.request.urlopen(req, data=bin) as res:
-            print(res.getcode())
-            print(res.body().decode("utf-8"))
-            tags = json.load(res)
+        r = requests.post(self.CPVISIONURL, data=bin, headers=headers)
 
-        print(tags["tags"])
+        res_json = r.json()
+        # print(res_json["tags"])
 
-        for tag in tags["tags"]:
+        for tag in res_json["tags"]:
+            # print(tag)
             if tag["name"] == "cat":
-                print("cat found")
                 return True
 
-        print("cat not found")
         return False

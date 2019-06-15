@@ -39,7 +39,7 @@ class viewGetter():
                 jpgfile = ".pic/catimg/" + "Cat" + now + ".jpeg"
                 with open(jpgfile, "wb") as rp:
                     rp.write(rawpic)
-                return jpgfile
+                return os.path.abspath(jpgfile)
 
         return ""
 

@@ -11,4 +11,4 @@ RUN pip install pipenv \
 
 COPY . ./
 
-CMD ["python", "app.py"]
+CMD cd app && python app.py
